@@ -9,29 +9,6 @@
 - 文档自动生成，不用改接口后再改文档
 - 支持在线测试获得内容
 
-## Swagger2配置
-
-poe.xml
-
-```xml
-<dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-ui</artifactId>
-            <version>3.0.3</version>
-        </dependency>
-```
-
-application.properties添加（不知道为啥）
-
-```
-spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
-```
-
 ## 使用样例
 
 ### 在项目中常用的注解说明
@@ -210,8 +187,8 @@ public class User {
 
 启动Springboot，在浏览器中输入 http://localhost:8080/doc.html 即可查看。
 
-![image-20220330014631505](image/image-20220330014631505.png)
+![image-20220330014631505](../image/image-20220330014631505.png)
 
 展开任意一个接口描述，单击 **Try it out** 按钮后，可以实现对该接口的测试。
 
-![image-20220330014651180](image/image-20220330014651180.png)
+![image-20220330014651180](../image/image-20220330014651180.png)

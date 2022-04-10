@@ -50,7 +50,7 @@ public class FastAutoGeneratorTest {
     @Test
     public static void main(String[] args) throws SQLException {
 //        目前没有初始化文件，不写了
-        before();
+//        before();
 
         FastAutoGenerator.create(DATA_SOURCE_CONFIG)
                 // 注意这里所有输入都不要用单引号引起来！插件作者自己有加
