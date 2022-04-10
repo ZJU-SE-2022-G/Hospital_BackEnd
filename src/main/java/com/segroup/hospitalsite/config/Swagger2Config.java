@@ -25,8 +25,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 public class Swagger2Config {
 
-    @Value(value = "${swagger.enable}")
-    private boolean swaggerEnable;
 
     /**
      * Description: 配置Docket
