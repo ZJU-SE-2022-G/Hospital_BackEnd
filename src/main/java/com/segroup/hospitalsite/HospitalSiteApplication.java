@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author zheng
  */
 @SpringBootApplication
-@MapperScan("com.segroup.hospitalsite.mapper")
+@MapperScan("com.segroup.hospitalsite.UserInfo.mapper")
 public class HospitalSiteApplication {
 
     public static void main(String[] args) {
