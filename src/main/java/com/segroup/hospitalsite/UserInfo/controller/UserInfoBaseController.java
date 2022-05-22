@@ -3,6 +3,7 @@ package com.segroup.hospitalsite.UserInfo.controller;
 import com.segroup.hospitalsite.UserInfo.service.exception.*;
 import com.segroup.hospitalsite.UserInfo.utils.JsonResult;
 import com.segroup.hospitalsite.UserInfo.service.exception.*;
+import io.swagger.models.auth.In;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpSession;
@@ -77,7 +78,22 @@ public class UserInfoBaseController {
      * @return 当前登录的用户uid值
      */
     protected final Integer getUidFromSession(HttpSession session){
-        return Integer.valueOf(session.getAttribute("uid").toString());
+        if(session.getAttribute("uid")==null)
+            throw new UidNotFoundException("Session当中没有找到UID！");
+        else
+            return Integer.valueOf(session.getAttribute("uid").toString());
+    }
+
+    /**
+     * 获取session中的uid
+     * @param session session对象
+     * @return 当前登录的用户uid值
+     */
+    protected final String getUidStringFromSession(HttpSession session){
+        if(session.getAttribute("uid")==null)
+            throw new UidNotFoundException("Session当中没有找到UID！");
+        else
+            return session.getAttribute("uid").toString();
     }
 
     /**
@@ -121,11 +137,18 @@ public class UserInfoBaseController {
      * @param session session对象
      * @return True为admin，false不是
      */
-    protected final Boolean getIsAdminFromSession(HttpSession session){
+    protected final String getIsAdminFromSession(HttpSession session){
         if(session.getAttribute("isAdmin")!=null)
-            return session.getAttribute("isAdmin").toString().equals("1");
+            return session.getAttribute("isAdmin").toString();
         else
-            return Boolean.FALSE;
+            return null;
+    }
+
+    protected final Integer getIsAdminNumberFromSession(HttpSession session){
+        if(session.getAttribute("isAdmin")!=null)
+            return Integer.valueOf(session.getAttribute("isAdmin").toString());
+        else
+            return 0;
     }
 
 }

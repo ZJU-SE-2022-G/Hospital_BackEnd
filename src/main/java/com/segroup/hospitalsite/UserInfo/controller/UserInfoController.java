@@ -1,5 +1,7 @@
 package com.segroup.hospitalsite.UserInfo.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.segroup.hospitalsite.UserInfo.entity.UserInfoEntity;
 import com.segroup.hospitalsite.UserInfo.service.IUserInfoService;
 import com.segroup.hospitalsite.UserInfo.utils.JsonResult;
@@ -22,6 +24,30 @@ public class UserInfoController extends UserInfoBaseController {
         iUserInfoService.register(userInfoEntity);
         JsonResult<Void> result = new JsonResult<>(SUCCESS, "注册成功");
 
+        String json = result.returnJson();
+        System.out.println("[Controller Output]" + json);
+        return json;
+    }
+
+    @RequestMapping("/getInfo")
+    public String getInfo(HttpSession session){
+        JSONObject jsonObject = new JSONObject();
+        UserInfoEntity userInfoEntity = new UserInfoEntity();
+        userInfoEntity.setUid(getUidFromSession(session));
+        userInfoEntity.setId(getIdFromSession(session));
+        userInfoEntity.setName(getNameFromSession(session));
+        userInfoEntity.setPhone(getPhoneFromSession(session));
+        userInfoEntity.setIsAdmin(getIsAdminNumberFromSession(session));
+        // 获取session
+//        jsonObject.put("uid", getUidFromSession(session));
+//        jsonObject.put("id", getIdFromSession(session));
+//        jsonObject.put("name",getNameFromSession(session));
+//        jsonObject.put("phone",getPhoneFromSession(session));
+//        jsonObject.put("isAdmin",getIsAdminFromSession(session));
+        JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS,"返回信息");
+//        System.out.println("[Controller Output]" + jsonObject);
+//        String temp = jsonObject.toString();
+        result.setData(userInfoEntity);
         String json = result.returnJson();
         System.out.println("[Controller Output]" + json);
         return json;
