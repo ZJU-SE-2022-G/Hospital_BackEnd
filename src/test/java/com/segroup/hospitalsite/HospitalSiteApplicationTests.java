@@ -1,6 +1,6 @@
 package com.segroup.hospitalsite;
 
-import com.segroup.hospitalsite.mapper.UserMapper;
+import com.segroup.hospitalsite.mapper.NucTestappMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 class HospitalSiteApplicationTests {
 
     @Resource
-    private UserMapper userMapper;
+    private NucTestappMapper userMapper;
     @Test
     void contextLoads() {
         userMapper.selectList(null).forEach(System.out::println);
