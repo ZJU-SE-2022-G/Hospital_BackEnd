@@ -14,5 +14,5 @@ import java.time.LocalDate;
  * @since 2022-05-25
  */
 public interface INucTestappService extends IService<NucTestApp> {
-    void updateByUsrId(String usr_id, LocalDate new_date);
+    void updateByUsrId(String usr_id, String new_date);
 }

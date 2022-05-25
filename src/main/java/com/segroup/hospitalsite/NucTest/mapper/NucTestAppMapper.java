@@ -15,6 +15,6 @@ import java.time.LocalDate;
  * @since 2022-05-25
  */
 @Mapper
-public interface NucTestAppMapper extends BaseMapper<NucTestApp> {
-    void updateByUsrId(String usr_id, LocalDate new_date);
+public interface NucTestappMapper extends BaseMapper<NucTestApp> {
+    void updateByUsrId(String usr_id, String new_date);
 }

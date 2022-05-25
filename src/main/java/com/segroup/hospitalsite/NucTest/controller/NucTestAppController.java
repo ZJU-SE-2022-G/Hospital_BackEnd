@@ -1,5 +1,6 @@
 package com.segroup.hospitalsite.NucTest.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.segroup.hospitalsite.NucTest.service.INucTestappService;
 import com.segroup.hospitalsite.NucTest.entity.NucTestApp;
 import com.segroup.hospitalsite.UserInfo.utils.JsonResult;
@@ -33,8 +34,6 @@ public class NucTestAppController{
     public static final int DATE_ILLEGAL_ERROR = 4003;
     public static final int REMOVE_ERROR = 4004;
     public static final int INSERT_ERROR = 4005;
-    public static final int NULL_ERROR = 4006;
-    public static final int INSERTION_ERROR = 5000;
     public static final int UPDATE_ERROR = 5001;
     @Autowired
     private INucTestappService ntaService;
@@ -58,27 +57,29 @@ public class NucTestAppController{
     })
     @GetMapping("/update/{usr_id}/{new_date}")
     @ResponseBody
-    public JsonResult<Void> updateRecord(@PathVariable String usr_id, @PathVariable String new_date){
-        JsonResult<Void> result;
+    public JsonResult<NucTestApp> updateRecord(@PathVariable String usr_id, @PathVariable String new_date){
+        JsonResult<NucTestApp> result;
         QueryWrapper<NucTestApp> wrapper = new QueryWrapper<>();
         wrapper.eq("usr_id", usr_id);
-        List queryList = ntaService.list(wrapper);
+        List<NucTestApp> queryList = ntaService.list(wrapper);
         LocalDate t_new_date;
         try{
             t_new_date = LocalDate.parse(new_date);
         }
         catch (DateTimeParseException e)
         {
-            result = new JsonResult<Void>(DATE_ILLEGAL_ERROR, "非法的日期格式，应为YYYY-mm-dd");
+            result = new JsonResult<>(DATE_ILLEGAL_ERROR, "非法的日期格式，应为YYYY-mm-dd");
             return result;
         }
-        if(queryList.size() == 0){
-            result = new JsonResult<Void>(ID_NOT_FOUND_ERROR, "该用户没有核酸检测预约记录");
+        if(queryList.size() == 0) {
+            result = new JsonResult<>(ID_NOT_FOUND_ERROR, "该用户没有核酸检测预约记录");
+            return result;
         }
-        else{
-            result = new JsonResult<Void>(SUCCESS, "修改预约日期至: "+new_date);
-        }
-        ntaService.updateByUsrId(usr_id, t_new_date);
+        NucTestApp ntaInfo = queryList.get(0);
+        ntaInfo.setTestDate(t_new_date);
+        ntaService.updateByUsrId(usr_id, new_date);
+        result = new JsonResult<>(SUCCESS, "修改预约日期至: "+new_date);
+        result.setData(ntaInfo);
         return result;
     }
 
@@ -100,7 +101,7 @@ public class NucTestAppController{
             result = new JsonResult<>(REMOVE_ERROR, "取消预约成功！");
         }
         else{
-            result = new JsonResult<>(SUCCESS, "删除记录失败！");
+            result = new JsonResult<>(SUCCESS, "取消预约成功！");
         }
         return result;
     }

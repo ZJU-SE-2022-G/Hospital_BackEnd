@@ -1,5 +1,7 @@
 package com.segroup.hospitalsite.NucTest.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -27,6 +29,7 @@ public class NucTestApp implements Serializable {
     @ApiModelProperty("姓名")
     private String usrName;
 
+    @TableId(value = "usr_id")
     @ApiModelProperty("身份证号")
     private String usrId;
 
