@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.segroup.hospitalsite.mapper.NucTestappMapper">
+<mapper namespace="com.segroup.hospitalsite.NucTest.mapper.NucTestappMapper">
     <update id="updateByUsrId">
         update nuc_testApp set test_date = #{new_date} where usr_id = #{usr_id}
     </update>

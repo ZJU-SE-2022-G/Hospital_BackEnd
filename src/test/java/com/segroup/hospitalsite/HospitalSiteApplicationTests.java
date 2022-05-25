@@ -1,8 +1,7 @@
 package com.segroup.hospitalsite;
 
-import com.segroup.hospitalsite.mapper.NucTestappMapper;
+import com.segroup.hospitalsite.NucTest.mapper.NucTestappMapper;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 

@@ -1,8 +1,8 @@
-package com.segroup.hospitalsite.service.impl;
+package com.segroup.hospitalsite.NucTest.service.impl;
 
-import com.segroup.hospitalsite.entity.NucTestapp;
-import com.segroup.hospitalsite.mapper.NucTestappMapper;
-import com.segroup.hospitalsite.service.INucTestappService;
+import com.segroup.hospitalsite.NucTest.service.INucTestappService;
+import com.segroup.hospitalsite.NucTest.entity.NucTestapp;
+import com.segroup.hospitalsite.NucTest.mapper.NucTestappMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

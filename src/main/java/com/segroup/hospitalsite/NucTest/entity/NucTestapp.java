@@ -1,4 +1,4 @@
-package com.segroup.hospitalsite.entity;
+package com.segroup.hospitalsite.NucTest.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;

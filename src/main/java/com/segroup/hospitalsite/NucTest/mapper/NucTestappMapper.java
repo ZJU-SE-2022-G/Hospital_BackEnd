@@ -1,6 +1,6 @@
-package com.segroup.hospitalsite.mapper;
+package com.segroup.hospitalsite.NucTest.mapper;
 
-import com.segroup.hospitalsite.entity.NucTestapp;
+import com.segroup.hospitalsite.NucTest.entity.NucTestapp;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

@@ -1,8 +1,8 @@
-package com.segroup.hospitalsite.controller;
+package com.segroup.hospitalsite.NucTest.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.segroup.hospitalsite.entity.NucTestapp;
-import com.segroup.hospitalsite.service.INucTestappService;
+import com.segroup.hospitalsite.NucTest.service.INucTestappService;
+import com.segroup.hospitalsite.NucTest.entity.NucTestapp;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 /**
