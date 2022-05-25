@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @TableName("nuc_testApp")
 @ApiModel(value = "NucTestapp对象", description = "核酸检测预约表")
-public class NucTestapp implements Serializable {
+public class NucTestApp implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

@@ -1,8 +1,8 @@
 package com.segroup.hospitalsite.NucTest.service.impl;
 
 import com.segroup.hospitalsite.NucTest.service.INucTestappService;
-import com.segroup.hospitalsite.NucTest.entity.NucTestapp;
-import com.segroup.hospitalsite.NucTest.mapper.NucTestappMapper;
+import com.segroup.hospitalsite.NucTest.entity.NucTestApp;
+import com.segroup.hospitalsite.NucTest.mapper.NucTestAppMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +18,9 @@ import java.time.LocalDate;
  * @since 2022-05-25
  */
 @Service
-public class NucTestappServiceImpl extends ServiceImpl<NucTestappMapper, NucTestapp> implements INucTestappService {
+public class NucTestappServiceImpl extends ServiceImpl<NucTestAppMapper, NucTestApp> implements INucTestappService {
     @Autowired
-    private NucTestappMapper ntaMapper;
+    private NucTestAppMapper ntaMapper;
 
     @Override
     public void updateByUsrId(String usr_id, LocalDate new_date) {
