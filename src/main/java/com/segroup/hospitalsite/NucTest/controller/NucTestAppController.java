@@ -1,6 +1,5 @@
 package com.segroup.hospitalsite.NucTest.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.segroup.hospitalsite.NucTest.service.INucTestappService;
 import com.segroup.hospitalsite.NucTest.entity.NucTestApp;
 import com.segroup.hospitalsite.UserInfo.utils.JsonResult;
@@ -36,7 +35,6 @@ public class NucTestAppController{
     public static final int REMOVE_ERROR = 4004;
     public static final int INSERT_ERROR = 4005;
     public static final int AFTER_DATE_ERROR = 4006;
-    public static final int UPDATE_ERROR = 5001;
     @Autowired
     private INucTestappService ntaService;
 
@@ -109,7 +107,7 @@ public class NucTestAppController{
         JsonResult<Void> result;
         QueryWrapper<NucTestApp> wrapper = new QueryWrapper<>();
         wrapper.eq("usr_id", usr_id);
-        List queryList = ntaService.list(wrapper);
+        List<NucTestApp> queryList = ntaService.list(wrapper);
         if(queryList.size() == 0){
             result = new JsonResult<>(ID_NOT_FOUND_ERROR, "该用户没有核酸检测预约记录");
             return result;
