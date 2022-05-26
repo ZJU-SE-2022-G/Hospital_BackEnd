@@ -1,9 +1,8 @@
 package com.segroup.hospitalsite.UserInfo.service.impl;
 
 import com.segroup.hospitalsite.UserInfo.entity.UserInfoEntity;
-import com.segroup.hospitalsite.UserInfo.mapper.UserInfoMapper;
+import com.segroup.hospitalsite.mapper.UserInfoMapper;
 import com.segroup.hospitalsite.UserInfo.service.IUserInfoService;
-import com.segroup.hospitalsite.UserInfo.service.exception.*;
 import com.segroup.hospitalsite.UserInfo.service.exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

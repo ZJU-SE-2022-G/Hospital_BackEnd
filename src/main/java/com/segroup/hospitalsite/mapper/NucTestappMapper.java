@@ -1,4 +1,4 @@
-package com.segroup.hospitalsite.NucTest.mapper;
+package com.segroup.hospitalsite.mapper;
 
 import com.segroup.hospitalsite.NucTest.entity.NucTestApp;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

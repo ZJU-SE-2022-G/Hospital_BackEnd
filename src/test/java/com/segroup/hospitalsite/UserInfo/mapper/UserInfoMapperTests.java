@@ -1,6 +1,7 @@
 package com.segroup.hospitalsite.UserInfo.mapper;
 
 import com.segroup.hospitalsite.UserInfo.entity.UserInfoEntity;
+import com.segroup.hospitalsite.mapper.UserInfoMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

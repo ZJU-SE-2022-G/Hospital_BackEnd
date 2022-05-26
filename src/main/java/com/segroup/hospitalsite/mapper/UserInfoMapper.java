@@ -1,4 +1,4 @@
-package com.segroup.hospitalsite.UserInfo.mapper;
+package com.segroup.hospitalsite.mapper;
 
 import com.segroup.hospitalsite.UserInfo.entity.UserInfoEntity;
 import org.apache.ibatis.annotations.Mapper;

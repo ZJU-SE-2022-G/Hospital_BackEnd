@@ -1,7 +1,7 @@
 package com.segroup.hospitalsite.VacApp.service.impl;
 
 import com.segroup.hospitalsite.VacApp.entity.VacApp;
-import com.segroup.hospitalsite.VacApp.mapper.VacAppMapper;
+import com.segroup.hospitalsite.mapper.VacAppMapper;
 import com.segroup.hospitalsite.VacApp.service.IVacAppService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

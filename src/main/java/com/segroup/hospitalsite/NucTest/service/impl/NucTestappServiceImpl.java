@@ -2,12 +2,10 @@ package com.segroup.hospitalsite.NucTest.service.impl;
 
 import com.segroup.hospitalsite.NucTest.service.INucTestappService;
 import com.segroup.hospitalsite.NucTest.entity.NucTestApp;
-import com.segroup.hospitalsite.NucTest.mapper.NucTestappMapper;
+import com.segroup.hospitalsite.mapper.NucTestappMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 /**
  * <p>

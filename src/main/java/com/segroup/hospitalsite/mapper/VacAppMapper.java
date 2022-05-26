@@ -1,4 +1,4 @@
-package com.segroup.hospitalsite.VacApp.mapper;
+package com.segroup.hospitalsite.mapper;
 
 import com.segroup.hospitalsite.VacApp.entity.VacApp;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
