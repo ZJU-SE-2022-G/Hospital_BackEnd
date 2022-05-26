@@ -33,8 +33,8 @@ public class NucTestApp implements Serializable {
     @ApiModelProperty("身份证号")
     private String usrId;
 
-    @ApiModelProperty("核酸检测类型:0单检/1混检")
-    private Integer testType;
+    @ApiModelProperty("核酸检测类型:单检/混检")
+    private String testType;
 
     @ApiModelProperty("核酸检测预约时间")
     private LocalDate testDate;

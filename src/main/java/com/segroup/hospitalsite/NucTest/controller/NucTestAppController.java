@@ -34,6 +34,7 @@ public class NucTestAppController{
     public static final int DATE_ILLEGAL_ERROR = 4003;
     public static final int REMOVE_ERROR = 4004;
     public static final int INSERT_ERROR = 4005;
+    public static final int AFTER_DATE_ERROR = 4006;
     public static final int UPDATE_ERROR = 5001;
     @Autowired
     private INucTestappService ntaService;
@@ -77,6 +78,11 @@ public class NucTestAppController{
         }
         NucTestApp ntaInfo = queryList.get(0);
         ntaInfo.setTestDate(t_new_date);
+        LocalDate now_date = LocalDate.now();
+        if(now_date.isAfter(t_new_date)){
+            result = new JsonResult<>(AFTER_DATE_ERROR, "修改后的日期不能早于当前日期！");
+            return result;
+        }
         ntaService.updateByUsrId(usr_id, new_date);
         result = new JsonResult<>(SUCCESS, "修改预约日期至: "+new_date);
         result.setData(ntaInfo);
@@ -129,14 +135,14 @@ public class NucTestAppController{
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "usrName", value="姓名", required = true),
             @ApiImplicitParam(paramType = "query", name = "usrId", value = "身份证号", required = true),
-            @ApiImplicitParam(paramType = "query", name = "testType", value = "核酸检测类型0:单检1:混检", required = true),
+            @ApiImplicitParam(paramType = "query", name = "testType", value = "核酸检测类型:单检/混检", required = true),
             @ApiImplicitParam(paramType = "query", name = "testDate", value = "核酸检测时间", required = true)
     })
     @PostMapping ("/insert")
     @ResponseBody
     public JsonResult<NucTestApp> insertAppRecord(@RequestParam String usrName,
                                   @RequestParam String usrId,
-                                  @RequestParam Integer testType,
+                                  @RequestParam String testType,
                                   @RequestParam String testDate){
         JsonResult<NucTestApp> result;
         NucTestApp ntaInfo = new NucTestApp();
