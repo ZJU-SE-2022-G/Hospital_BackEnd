@@ -185,7 +185,7 @@ public class User {
 
 ## 如何查看接口文档
 
-启动Springboot，在浏览器中输入 http://localhost:8080/doc.html 即可查看。
+启动Springboot，在浏览器中输入 http://localhost:SpringBoot的端口号/doc.html 即可查看。
 
 ![image-20220330014631505](../image/image-20220330014631505.png)
 
