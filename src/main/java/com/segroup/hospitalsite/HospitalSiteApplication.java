@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * 请不要修改 MapperScan，把mapper放到mapper目录下
  * @author zheng
  */
 @SpringBootApplication
