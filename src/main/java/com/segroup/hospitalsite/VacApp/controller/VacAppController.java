@@ -47,6 +47,12 @@ public class VacAppController {
     @ApiOperation(value = "新冠疫苗查询界面", notes = "跳转至新冠疫苗查询界面")
     @GetMapping("/query")
     public String Query() { return "vacQuery";}
+    @ApiOperation(value = "新冠疫苗修改预约日期界面", notes = "跳转至新冠疫苗修改预约日期界面")
+    @GetMapping("/modify")
+    public String Modify() { return "vacModify";}
+    @ApiOperation(value = "取消新冠疫苗预约界面", notes = "跳转至取消新冠疫苗预约界面")
+    @GetMapping("/delete")
+    public String Delete() { return "vacDelete";}
 
     @ApiOperation(value = "新冠疫苗预约", notes = "新增新冠疫苗预约记录")
     @ApiImplicitParams({

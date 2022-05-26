@@ -49,15 +49,20 @@ public class NucTestAppController{
     @ApiOperation(value = "核酸检测查询界面", notes = "跳转至核酸检测预约界面")
     @GetMapping("/query")
     public String Query(){
-        return "appQuery"; //需要换成实际的html页面，放到templates/中
+        return "nucQuery"; //需要换成实际的html页面，放到templates/中
     }
 
     @ApiOperation(value = "核酸检测修改日期界面", notes = "跳转至核酸检测修改日期界面")
     @GetMapping("/modify")
     public String Modify(){
-        return "appModify"; //需要换成实际的html页面，放到templates/中
+        return "nucModify"; //需要换成实际的html页面，放到templates/中
     }
 
+    @ApiOperation(value = "取消核酸检测预约界面", notes = "跳转至取消核酸检测预约界面")
+    @GetMapping("/delete")
+    public String Delete(){
+        return "nucDelete"; //需要换成实际的html页面，放到templates/中
+    }
     @ApiOperation(value = "修改核酸预约日期", notes = "根据身份证号修改")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "path", name = "usr_id", value = "身份证号", required = true),
