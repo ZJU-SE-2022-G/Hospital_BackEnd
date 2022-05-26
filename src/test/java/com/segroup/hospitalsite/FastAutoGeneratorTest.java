@@ -3,7 +3,6 @@ package com.segroup.hospitalsite;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
-import com.baomidou.mybatisplus.generator.config.TemplateType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.junit.jupiter.api.Test;
@@ -14,9 +13,6 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collections;
-import java.util.Properties;
-import java.util.Scanner;
-import java.util.function.Consumer;
 
 /**
  * Description:
@@ -29,9 +25,9 @@ public class FastAutoGeneratorTest {
     /**
      * 执行初始化数据库脚本
      */
-    public static void before() throws SQLException {
+    public static void before(String name) throws SQLException {
         Connection conn = DATA_SOURCE_CONFIG.build().getConn();
-        InputStream inputStream = CodeGeneratorTest.class.getResourceAsStream("/sql/data.sql");
+        InputStream inputStream = CodeGeneratorTest.class.getResourceAsStream(name);
         ScriptRunner scriptRunner = new ScriptRunner(conn);
         scriptRunner.setAutoCommit(true);
         scriptRunner.runScript(new InputStreamReader(inputStream));
@@ -50,7 +46,7 @@ public class FastAutoGeneratorTest {
     @Test
     public static void main(String[] args) throws SQLException {
 //        目前没有初始化文件，不写了
-//        before();
+//        before("/sql/init.sql");
 
         FastAutoGenerator.create(DATA_SOURCE_CONFIG)
                 // 注意这里所有输入都不要用单引号引起来！插件作者自己有加
