@@ -30,6 +30,7 @@ import java.util.List;
 public class NucTestAppController{
 
     public static final int SUCCESS = 200;
+    public static final int ID_EXIST_ERROR = 4001;
     public static final int ID_NOT_FOUND_ERROR = 4002;
     public static final int DATE_ILLEGAL_ERROR = 4003;
     public static final int REMOVE_ERROR = 4004;
@@ -42,13 +43,19 @@ public class NucTestAppController{
     @ApiOperation(value = "核酸检测预约界面", notes = "跳转至核酸检测预约界面")
     @GetMapping("/makeApp")
     public String Appointment(){
-        return "app"; //需要换成实际的html页面，放到templates/中
+        return "nucApp"; //需要换成实际的html页面，放到templates/中
     }
 
     @ApiOperation(value = "核酸检测查询界面", notes = "跳转至核酸检测预约界面")
     @GetMapping("/query")
     public String Query(){
-        return "query"; //需要换成实际的html页面，放到templates/中
+        return "appQuery"; //需要换成实际的html页面，放到templates/中
+    }
+
+    @ApiOperation(value = "核酸检测修改日期界面", notes = "跳转至核酸检测修改日期界面")
+    @GetMapping("/modify")
+    public String Modify(){
+        return "appModify"; //需要换成实际的html页面，放到templates/中
     }
 
     @ApiOperation(value = "修改核酸预约日期", notes = "根据身份证号修改")
@@ -104,10 +111,10 @@ public class NucTestAppController{
         }
         boolean flag = ntaService.remove(wrapper);
         if(flag){
-            result = new JsonResult<>(REMOVE_ERROR, "取消预约成功！");
+            result = new JsonResult<>(SUCCESS, "取消预约成功！");
         }
         else{
-            result = new JsonResult<>(SUCCESS, "取消预约成功！");
+            result = new JsonResult<>(REMOVE_ERROR, "取消预约失败！");
         }
         return result;
     }
@@ -145,11 +152,19 @@ public class NucTestAppController{
                                   @RequestParam String testType,
                                   @RequestParam String testDate){
         JsonResult<NucTestApp> result;
+        QueryWrapper<NucTestApp> wrapper = new QueryWrapper<>();
+        wrapper.eq("usr_id", usrId);
+        List<NucTestApp> queryList = ntaService.list(wrapper);
         NucTestApp ntaInfo = new NucTestApp();
         ntaInfo.setUsrName(usrName);
         ntaInfo.setUsrId(usrId);
         ntaInfo.setTestType(testType);
         ntaInfo.setTestDate(LocalDate.parse(testDate));
+        if(queryList.size()!=0){
+            result = new JsonResult<>(ID_EXIST_ERROR, "该用户已经预约过，不能重复预约");
+            result.setData(ntaInfo);
+            return result;
+        }
         boolean flag = ntaService.save(ntaInfo);
         if(flag){
             result = new JsonResult<>(SUCCESS, "预约成功,返回预约信息");
