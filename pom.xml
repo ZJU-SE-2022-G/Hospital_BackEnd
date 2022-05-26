@@ -21,6 +21,11 @@
         <velocity.version>2.0</velocity.version>
     </properties>
     <dependencies>
+        <!--SpringBoot集成Quartz-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
         <!--SpringBoot通用依赖模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
