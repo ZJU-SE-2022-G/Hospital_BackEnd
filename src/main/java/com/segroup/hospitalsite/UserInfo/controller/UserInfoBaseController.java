@@ -4,11 +4,13 @@ import com.segroup.hospitalsite.UserInfo.service.exception.*;
 import com.segroup.hospitalsite.UserInfo.utils.JsonResult;
 import com.segroup.hospitalsite.UserInfo.service.exception.*;
 import io.swagger.models.auth.In;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpSession;
 
 /** 控制层基类 */
+@CrossOrigin
 public class UserInfoBaseController {
     // 成功的状态
     public static final int SUCCESS = 200;

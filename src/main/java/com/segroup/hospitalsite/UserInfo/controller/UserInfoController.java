@@ -78,9 +78,22 @@ public class UserInfoController extends UserInfoBaseController {
 
 
     @RequestMapping("/loginByPhone")
-    public String loginByPhone(String phone, String password){
+    public String loginByPhone(String phone, String password, HttpSession session){
         UserInfoEntity userInfoEntity = iUserInfoService.loginByPhone(phone, password);
         JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS, "登录成功");
+
+        // 设置session
+        session.setAttribute("uid", userInfoEntity.getUid());
+        session.setAttribute("id", userInfoEntity.getId());
+        session.setAttribute("name", userInfoEntity.getName());
+        session.setAttribute("phone", userInfoEntity.getPhone());
+        session.setAttribute("isAdmin", userInfoEntity.getIsAdmin());
+
+        System.out.println("[phone]" + getIdFromSession(session));
+        System.out.println(getIsAdminFromSession(session));
+        System.out.println(getNameFromSession(session));
+        System.out.println(getPhoneFromSession(session));
+        System.out.println(getUidFromSession(session));
 
         result.setData(userInfoEntity);
         String json = result.returnJson();

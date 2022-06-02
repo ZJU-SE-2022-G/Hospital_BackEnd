@@ -3,6 +3,7 @@ package com.segroup.hospitalsite.UserInfo.config;
 import com.segroup.hospitalsite.UserInfo.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -15,7 +16,14 @@ public class LoginInterceptorConfigurator implements WebMvcConfigurer {
     // 创建拦截器对象
     HandlerInterceptor loginInterceptor = new LoginInterceptor();
 
-
+    @Override
+    public void addCorsMappings(CorsRegistry registry){
+        registry.addMapping("*/**")
+                .allowedOrigins("*")
+                .allowCredentials(true)
+                .allowedMethods("GET","POST", "PUT", "DELETE", "OPTIONS","PATCH")
+                .maxAge(3600);
+    }
 
     @Override
     // 注册自定义拦截器
