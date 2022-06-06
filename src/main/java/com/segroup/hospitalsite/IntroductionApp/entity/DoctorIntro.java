@@ -32,16 +32,6 @@ public class DoctorIntro implements Serializable {
         docDetail = detail;
     }
 
-//    public DoctorIntro(DoctorIntro intro)
-//    {
-//        docId = intro.docId;
-//        docName = intro.docName;
-//        sex = intro.sex;
-//        age = intro.age;
-//        departmantName = intro.departmantName;
-//        docDetail = intro.docDetail;
-//    }
-
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("医生编号")

@@ -23,16 +23,27 @@
 --
 -- INSERT INTO nuc_testApp VALUES ('测试','220220200002020202','单检','2022-05-29');
 
-drop table if exists `doctor_intro`;
-create table `doctor_intro`
-(
-    doc_id char(8) comment '医生编号',
-    doc_name char(20) comment '医生姓名',
-    sex            ENUM('男', '女') not null comment '性别',
-    age            int comment '年龄',
-    departmant_name char(80) comment '所在科室',
-    doc_detail varchar(1024) comment '详细介绍',
-    primary key (doc_id)
-) COMMENT = '医生信息介绍表';
+-- drop table if exists `doctor_intro`;
+-- create table `doctor_intro`
+-- (
+--     doc_id char(8) comment '医生编号',
+--     doc_name char(20) comment '医生姓名',
+--     sex            ENUM('男', '女') not null comment '性别',
+--     age            int comment '年龄',
+--     departmant_name char(80) comment '所在科室',
+--     doc_detail varchar(1024) comment '详细介绍',
+--     primary key (doc_id)
+-- ) COMMENT = '医生信息介绍表';
+--
+-- INSERT INTO doctor_intro VALUES ('id123', 'name123', '男', 18, '男科', 'detail123');
 
-INSERT INTO doctor_intro VALUES ('id123', 'name123', '男', 18, '男科', 'detail123');
+drop table if exists `department_intro`;
+create table `department_intro`
+(
+    id char(8) comment '科室编号',
+    name char(20) comment '科室名称',
+    detail varchar(1024) comment '科室详情',
+    primary key (id)
+) COMMENT = '科室信息介绍表';
+
+INSERT INTO department_intro VALUES ('id999', 'name999', 'this is the first department');

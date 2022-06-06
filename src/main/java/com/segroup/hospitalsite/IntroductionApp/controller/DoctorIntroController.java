@@ -33,7 +33,7 @@ public class DoctorIntroController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     @ApiImplicitParam(paramType = "path", name = "id",
-            value = "用户名", required = true, defaultValue = "test")
+            value = "医生编号", required = true, defaultValue = "test")
     public CommonResult<List<DoctorIntro>> getDoctorInfoById(@PathVariable String id)
     {
         QueryWrapper<DoctorIntro> wrapper = new QueryWrapper<>();
