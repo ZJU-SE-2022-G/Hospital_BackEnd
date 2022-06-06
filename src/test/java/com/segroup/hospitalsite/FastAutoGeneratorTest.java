@@ -52,40 +52,40 @@ public class FastAutoGeneratorTest {
 //        目前没有初始化文件，不写了
         before();
 
-        FastAutoGenerator.create(DATA_SOURCE_CONFIG)
-                // 注意这里所有输入都不要用单引号引起来！插件作者自己有加
-                // 全局配置
-                .globalConfig((scanner, builder) -> {
-                    builder.author(scanner.apply("请输入开发者名称：")) // 设置作者
-                            .disableOpenDir()   //禁止打开输出目录，默认打开
-                            .commentDate("yyyy-MM-dd")//注释日期，默认值: yyyy-MM-dd
-                            .enableSwagger()   //开启 swagger 模式
-                            .outputDir(System.getProperty("user.dir") + "/src/main/java"); // 指定输出目录
-                })
-                // 包配置
-                .packageConfig(builder -> {
-                    builder.parent("com.segroup.hospitalsite") // 设置父包名
-//                            .moduleName("mbg") // 设置父包模块名
-                            .pathInfo(Collections.singletonMap(OutputFile.xml, System.getProperty("user.dir") + "/src/main/resources/mapper")); // 设置mapperXml生成路径
-                })
-                // 策略配置
-                .strategyConfig((scanner, builder) -> {
-                    builder.addInclude(scanner.apply("请输入表名，多个表名用 , 隔开"))
-                            .entityBuilder().fileOverride().enableLombok()// 覆盖已生成文件
-                            .mapperBuilder().fileOverride();
-//                            .addTablePrefix("s_", "c_");    // 设置过滤表前缀
-                })
-//                .templateConfig(builder -> {
-//                    builder
-//                            .disable(TemplateType.CONTROLLER)
-//                            .disable(TemplateType.SERVICE)
-//                            .disable(TemplateType.SERVICEIMPL);
+//        FastAutoGenerator.create(DATA_SOURCE_CONFIG)
+//                // 注意这里所有输入都不要用单引号引起来！插件作者自己有加
+//                // 全局配置
+//                .globalConfig((scanner, builder) -> {
+//                    builder.author(scanner.apply("请输入开发者名称：")) // 设置作者
+//                            .disableOpenDir()   //禁止打开输出目录，默认打开
+//                            .commentDate("yyyy-MM-dd")//注释日期，默认值: yyyy-MM-dd
+//                            .enableSwagger()   //开启 swagger 模式
+//                            .outputDir(System.getProperty("user.dir") + "/src/main/java"); // 指定输出目录
 //                })
-                .templateEngine(new FreemarkerTemplateEngine())
-                /*
-                    模板引擎配置，默认 Velocity 可选模板引擎 Beetl 或 Freemarker
-                   .templateEngine(new BeetlTemplateEngine())
-                   .templateEngine(new FreemarkerTemplateEngine())
-                 */.execute();
+//                // 包配置
+//                .packageConfig(builder -> {
+//                    builder.parent("com.segroup.hospitalsite") // 设置父包名
+////                            .moduleName("mbg") // 设置父包模块名
+//                            .pathInfo(Collections.singletonMap(OutputFile.xml, System.getProperty("user.dir") + "/src/main/resources/mapper")); // 设置mapperXml生成路径
+//                })
+//                // 策略配置
+//                .strategyConfig((scanner, builder) -> {
+//                    builder.addInclude(scanner.apply("请输入表名，多个表名用 , 隔开"))
+//                            .entityBuilder().fileOverride().enableLombok()// 覆盖已生成文件
+//                            .mapperBuilder().fileOverride();
+////                            .addTablePrefix("s_", "c_");    // 设置过滤表前缀
+//                })
+////                .templateConfig(builder -> {
+////                    builder
+////                            .disable(TemplateType.CONTROLLER)
+////                            .disable(TemplateType.SERVICE)
+////                            .disable(TemplateType.SERVICEIMPL);
+////                })
+//                .templateEngine(new FreemarkerTemplateEngine())
+//                /*
+//                    模板引擎配置，默认 Velocity 可选模板引擎 Beetl 或 Freemarker
+//                   .templateEngine(new BeetlTemplateEngine())
+//                   .templateEngine(new FreemarkerTemplateEngine())
+//                 */.execute();
     }
 }
