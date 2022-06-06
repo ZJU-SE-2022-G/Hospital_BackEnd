@@ -37,13 +37,26 @@
 --
 -- INSERT INTO doctor_intro VALUES ('id123', 'name123', '男', 18, '男科', 'detail123');
 
-drop table if exists `department_intro`;
-create table `department_intro`
-(
-    id char(8) comment '科室编号',
-    name char(20) comment '科室名称',
-    detail varchar(1024) comment '科室详情',
-    primary key (id)
-) COMMENT = '科室信息介绍表';
+-- drop table if exists `department_intro`;
+-- create table `department_intro`
+-- (
+--     id char(8) comment '科室编号',
+--     name char(20) comment '科室名称',
+--     detail varchar(1024) comment '科室详情',
+--     primary key (id)
+-- ) COMMENT = '科室信息介绍表';
+--
+-- INSERT INTO department_intro VALUES ('id999', 'name999', 'this is the first department');
 
-INSERT INTO department_intro VALUES ('id999', 'name999', 'this is the first department');
+-- drop table if exists `illness_intro`;
+-- create table `illness_intro`
+-- (
+--     id char(8) comment '病情编号',
+--     name char(20) comment '病情名称',
+--     detail varchar(1024) comment '病情简介',
+--     primary key (id)
+-- ) COMMENT = '病情信息介绍表';
+--
+-- INSERT INTO illness_intro VALUES ('id123', 'name123', 'this is the first illness');
+-- INSERT INTO illness_intro VALUES ('id423', 'name423', 'this is the second illness');
+-- INSERT INTO illness_intro VALUES ('id324', 'name324', 'this is the third illness');

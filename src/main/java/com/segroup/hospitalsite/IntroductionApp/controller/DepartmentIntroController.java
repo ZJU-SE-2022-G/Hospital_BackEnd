@@ -35,7 +35,7 @@ public class DepartmentIntroController {
     @ResponseBody
     @ApiImplicitParam(paramType = "path", name = "id",
             value = "科室编号", required = true, defaultValue = "test")
-    public CommonResult<List<DepartmentIntro>> getDoctorInfoById(@PathVariable String id)
+    public CommonResult<List<DepartmentIntro>> getDepartmentInfoById(@PathVariable String id)
     {
         QueryWrapper<DepartmentIntro> wrapper = new QueryWrapper<>();
         wrapper.eq("id", id);
