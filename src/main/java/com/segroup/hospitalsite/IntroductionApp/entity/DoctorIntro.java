@@ -1,5 +1,6 @@
 package com.segroup.hospitalsite.IntroductionApp.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
@@ -21,9 +22,30 @@ import lombok.Setter;
 @ApiModel(value = "DoctorIntro对象", description = "医生信息介绍表")
 public class DoctorIntro implements Serializable {
 
+    public DoctorIntro(String doc_id, String doc_name, String doc_sex, Integer doc_age, String department_name, String detail)
+    {
+        docId = doc_id;
+        docName = doc_name;
+        sex = doc_sex;
+        age = doc_age;
+        departmantName = department_name;
+        docDetail = detail;
+    }
+
+//    public DoctorIntro(DoctorIntro intro)
+//    {
+//        docId = intro.docId;
+//        docName = intro.docName;
+//        sex = intro.sex;
+//        age = intro.age;
+//        departmantName = intro.departmantName;
+//        docDetail = intro.docDetail;
+//    }
+
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("医生编号")
+    @TableId()
     private String docId;
 
     @ApiModelProperty("医生姓名")
