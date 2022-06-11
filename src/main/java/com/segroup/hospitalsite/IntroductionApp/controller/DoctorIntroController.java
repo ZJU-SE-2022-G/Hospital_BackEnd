@@ -117,10 +117,11 @@ public class DoctorIntroController {
         if (!Objects.equals(intro_detail, "null"))
             doc_info.setDocDetail(intro_detail);
 
-        if (iDoctorIntroService.saveOrUpdate(doc_info))
+        if (iDoctorIntroService.saveOrUpdate(doc_info)) {
             return CommonResult.success("");
-        else
+        } else {
             return CommonResult.failed();
+        }
     }
 
     @ApiOperation("删除指定名医介绍")
