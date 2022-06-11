@@ -6,7 +6,7 @@ package com.segroup.hospitalsite.utils;
  */
 public interface IErrorCode {
 
-    long getCode();
+    long getState();
 
     String getMessage();
 }

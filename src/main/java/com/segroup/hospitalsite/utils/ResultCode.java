@@ -14,22 +14,22 @@ public enum ResultCode implements IErrorCode{
     UNAUTHORIZED(401, "暂未登录或token已经过期"),
     FORBIDDEN(403, "没有相关权限");
 
-    private final long code;
+    private final long state;
     private final String message;
 
-    ResultCode(long code, String message)
+    ResultCode(long state, String message)
     {
-        this.code=code;
+        this.state=state;
         this.message=message;
     }
 
     @Override
-    public long getCode() {
-        return code;
+    public long getState() {
+        return this.state;
     }
 
     @Override
     public String getMessage() {
-        return message;
+        return this.message;
     }
 }

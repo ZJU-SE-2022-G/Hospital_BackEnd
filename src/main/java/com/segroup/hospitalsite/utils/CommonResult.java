@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "通用返回对象")
 public class CommonResult<T> {
     @ApiModelProperty("状态码")
-    private long code;
+    private long state;
 
     @ApiModelProperty("返回信息")
     private String message;
@@ -22,8 +22,8 @@ public class CommonResult<T> {
 
     protected  CommonResult(){}
 
-    protected CommonResult(long code, String message, T data){
-        this.code=code;
+    protected CommonResult(long state, String message, T data){
+        this.state=state;
         this.message=message;
         this.data=data;
     }
@@ -36,7 +36,7 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> success(T data)
     {
-        return new CommonResult<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+        return new CommonResult<>(ResultCode.SUCCESS.getState(), ResultCode.SUCCESS.getMessage(), data);
     }
 
     /**
@@ -48,7 +48,7 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> success(T data, String message)
     {
-        return new CommonResult<>(ResultCode.SUCCESS.getCode(), message, data);
+        return new CommonResult<>(ResultCode.SUCCESS.getState(), message, data);
     }
 
     /**
@@ -59,7 +59,7 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> failed(IErrorCode errorCode)
     {
-        return new CommonResult<>(errorCode.getCode(), errorCode.getMessage(), null);
+        return new CommonResult<>(errorCode.getState(), errorCode.getMessage(), null);
     }
 
     /**
@@ -71,7 +71,7 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> failed(IErrorCode errorCode, String message)
     {
-        return new CommonResult<>(errorCode.getCode(), message, null);
+        return new CommonResult<>(errorCode.getState(), message, null);
     }
 
     /**
@@ -82,7 +82,7 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> failed(String message)
     {
-        return new CommonResult<>(ResultCode.FAILED.getCode(), message, null);
+        return new CommonResult<>(ResultCode.FAILED.getState(), message, null);
     }
 
     /**
@@ -93,7 +93,7 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> validateFailed(String message)
     {
-        return new CommonResult<>(ResultCode.VALIDATE_FAILED.getCode(), message, null);
+        return new CommonResult<>(ResultCode.VALIDATE_FAILED.getState(), message, null);
     }
 
 
@@ -105,7 +105,7 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> unauthorized(T data)
     {
-        return new CommonResult<>(ResultCode.UNAUTHORIZED.getCode(), ResultCode.UNAUTHORIZED.getMessage(), data);
+        return new CommonResult<>(ResultCode.UNAUTHORIZED.getState(), ResultCode.UNAUTHORIZED.getMessage(), data);
     }
 
     /**
@@ -126,14 +126,14 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> forbidden(T data)
     {
-        return new CommonResult<>(ResultCode.FORBIDDEN.getCode(), ResultCode.FORBIDDEN.getMessage(), data);
+        return new CommonResult<>(ResultCode.FORBIDDEN.getState(), ResultCode.FORBIDDEN.getMessage(), data);
     }
-    public long getCode() {
-        return code;
+    public long getState() {
+        return state;
     }
 
-    public void setCode(long code) {
-        this.code = code;
+    public void setState(long state) {
+        this.state = state;
     }
 
     public String getMessage() {
