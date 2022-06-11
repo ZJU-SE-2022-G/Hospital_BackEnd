@@ -3,6 +3,7 @@ package com.segroup.hospitalsite.IntroductionApp.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.segroup.hospitalsite.IntroductionApp.entity.DoctorIntro;
 import com.segroup.hospitalsite.IntroductionApp.service.IDoctorIntroService;
+import com.segroup.hospitalsite.controller.WorkdayController;
 import com.segroup.hospitalsite.utils.CommonResult;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -75,8 +76,9 @@ public class DoctorIntroController {
     )
     {
         DoctorIntro doc_info = new DoctorIntro(doc_id, doc_name, doc_sex, doc_age, department_name, intro_detail);
-        if (iDoctorIntroService.saveOrUpdate(doc_info))
+        if (iDoctorIntroService.saveOrUpdate(doc_info)) {
             return CommonResult.success("");
+        }
         else
             return CommonResult.failed();
     }
@@ -117,11 +119,10 @@ public class DoctorIntroController {
         if (!Objects.equals(intro_detail, "null"))
             doc_info.setDocDetail(intro_detail);
 
-        if (iDoctorIntroService.saveOrUpdate(doc_info)) {
+        if (iDoctorIntroService.saveOrUpdate(doc_info))
             return CommonResult.success("");
-        } else {
+        else
             return CommonResult.failed();
-        }
     }
 
     @ApiOperation("删除指定名医介绍")
