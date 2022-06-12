@@ -3,7 +3,6 @@ package com.segroup.hospitalsite.IntroductionApp.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.segroup.hospitalsite.IntroductionApp.entity.DoctorIntro;
 import com.segroup.hospitalsite.IntroductionApp.service.IDoctorIntroService;
-import com.segroup.hospitalsite.controller.WorkdayController;
 import com.segroup.hospitalsite.utils.CommonResult;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
