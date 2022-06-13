@@ -4,6 +4,9 @@ import com.segroup.hospitalsite.UserInfo.entity.UserInfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Mapper
 @Repository // 数据库相关
 public interface UserInfoMapper {
@@ -41,4 +44,6 @@ public interface UserInfoMapper {
      * @return 受影响的行数
      */
     public Integer updateByUid(UserInfoEntity userInfoEntity);
+
+    public List<Map<Integer, String>> findAll();
 }

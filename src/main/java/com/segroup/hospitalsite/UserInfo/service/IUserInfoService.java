@@ -2,6 +2,9 @@ package com.segroup.hospitalsite.UserInfo.service;
 
 import com.segroup.hospitalsite.UserInfo.entity.UserInfoEntity;
 
+import java.util.List;
+import java.util.Map;
+
 public interface IUserInfoService {
     /**
      * 注册用户
@@ -30,4 +33,11 @@ public interface IUserInfoService {
      * @param user
      */
     public void update(UserInfoEntity user);
+
+    /**
+     * 获取所有的用户信息
+     * @return all users
+     */
+    public List<Map<Integer, String>> findAll();
+
 }

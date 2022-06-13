@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -112,6 +114,17 @@ public class UserInfoController extends UserInfoBaseController {
         JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS, "更新成功");
 
         result.setData(userInfoEntity);
+        String json = result.returnJson();
+        System.out.println("[Controller Output]" + json);
+        return json;
+    }
+
+    @RequestMapping("/findAll")
+    public String getAll(HttpSession session){
+        System.out.println(getIsAdminFromSession(session));
+        List<Map<Integer, String>> info = iUserInfoService.findAll();
+        JsonResult<String> result = new JsonResult<String>(SUCCESS, "更新成功");
+        result.setData(info.toString());
         String json = result.returnJson();
         System.out.println("[Controller Output]" + json);
         return json;

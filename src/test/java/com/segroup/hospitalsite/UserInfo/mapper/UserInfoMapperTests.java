@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+import java.util.Map;
+
 @SpringBootTest // 表示标注当前类为标注类，不会随项目打包
 @RunWith(SpringRunner.class) // 表示启动这个单元测试类
 public class UserInfoMapperTests {
@@ -44,5 +47,11 @@ public class UserInfoMapperTests {
         userInfoEntity.setPhone("altered");
         userInfoEntity.setIsAdmin(0);
         userInfoMapper.updateByUid(userInfoEntity);
+    }
+
+    @Test
+    public void getAll(){
+        List<Map<Integer, String>> mapList = userInfoMapper.findAll();
+        System.out.println(mapList);
     }
 }

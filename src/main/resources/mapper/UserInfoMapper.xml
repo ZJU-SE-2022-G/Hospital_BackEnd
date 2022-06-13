@@ -28,4 +28,8 @@
         WHERE
             uid = #{uid}
     </update>
+
+    <select id="findAll" resultType="java.util.HashMap">
+        SELECT * from account;
+    </select>
 </mapper>

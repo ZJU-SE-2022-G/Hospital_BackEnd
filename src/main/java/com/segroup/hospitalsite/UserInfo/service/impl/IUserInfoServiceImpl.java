@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -123,6 +125,12 @@ public class IUserInfoServiceImpl implements IUserInfoService {
             throw new UpdateException("注册时产生了未知异常");
     }
 
+    @Override
+    public List<Map<Integer, String>> findAll(){
+        List<Map<Integer, String>> retVal = userInfoMapper.findAll();
+        return retVal;
+    }
+
     /**
      * 使用盐值进行加密
      * @param pwd
@@ -135,6 +143,7 @@ public class IUserInfoServiceImpl implements IUserInfoService {
                     .getBytes(StandardCharsets.UTF_8)).toUpperCase();
         return pwd;
     }
+
 
 
 }
