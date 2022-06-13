@@ -1,4 +1,4 @@
-package com.segroup.hospitalsite.NGP.mapper;
+package com.segroup.hospitalsite.mapper;
 
 import com.segroup.hospitalsite.NGP.entity.Guide;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

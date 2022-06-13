@@ -1,6 +1,6 @@
-package com.segroup.hospitalsite.NGP.mapper;
+package com.segroup.hospitalsite.mapper;
 
-import com.segroup.hospitalsite.NGP.entity.ProblemFeedback;
+import com.segroup.hospitalsite.NGP.entity.Notice;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,6 +13,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2022-5-26
  */
 @Mapper
-public interface ProblemFeedbackMapper extends BaseMapper<ProblemFeedback> {
+public interface NoticeMapper extends BaseMapper<Notice> {
 
 }

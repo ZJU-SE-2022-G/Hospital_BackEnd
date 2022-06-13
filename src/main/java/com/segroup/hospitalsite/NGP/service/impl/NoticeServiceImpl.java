@@ -2,7 +2,7 @@ package com.segroup.hospitalsite.NGP.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.segroup.hospitalsite.NGP.entity.Notice;
-import com.segroup.hospitalsite.NGP.mapper.NoticeMapper;
+import com.segroup.hospitalsite.mapper.NoticeMapper;
 import com.segroup.hospitalsite.NGP.service.INoticeService;
 import org.springframework.stereotype.Service;
 
