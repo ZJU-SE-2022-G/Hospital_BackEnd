@@ -40,12 +40,12 @@ public class IUserInfoServiceImpl implements IUserInfoService {
         UserInfoEntity phone_ptr = userInfoMapper.findByPhone(user.getPhone());
         UserInfoEntity id_ptr = userInfoMapper.findById(user.getId());
         if(phone_ptr != null)
-            throw new PhoneDuplicationException("该手机号已注册");
+            throw new PhoneDuplicationException("This Phone Number Has been Used");
         if(id_ptr != null)
-            throw new IdDuplicationException("该身份证号已注册");
+            throw new IdDuplicationException("This ID Number Has been Used");
         Integer rows = userInfoMapper.insertNew(user);
         if(rows != 1)
-            throw new InsertionException("注册时产生了未知异常");
+            throw new InsertionException("Unknown Error");
     }
 
     @Override
@@ -53,7 +53,7 @@ public class IUserInfoServiceImpl implements IUserInfoService {
         UserInfoEntity result = userInfoMapper.findById(id);
         // 先获取用户信息
         if(result == null){
-            throw new IdNotFoundException("该用户id不存在！");
+            throw new IdNotFoundException("This ID Number Does NOT Exist");
         }
         String realPwd = "";
         // 检测密码是否匹配
@@ -64,7 +64,7 @@ public class IUserInfoServiceImpl implements IUserInfoService {
             realPwd = password;
 
         if(!realPwd.equals(result.getPassword()))
-            throw new PasswordNotMatchException("密码错误");
+            throw new PasswordNotMatchException("Password Mismatch");
         result.setSalt(""); // 为了安全和性能考虑，删除盐值
         return result;
     }
@@ -74,7 +74,7 @@ public class IUserInfoServiceImpl implements IUserInfoService {
         UserInfoEntity result = userInfoMapper.findByPhone(phone);
         // 先获取用户信息
         if(result == null){
-            throw new PhoneNotFoundException("该手机号不存在！");
+            throw new PhoneNotFoundException("This Phone Number Does NOT Exist");
         }
         String realPwd = "";
         // 检测密码是否匹配
@@ -85,7 +85,7 @@ public class IUserInfoServiceImpl implements IUserInfoService {
             realPwd = password;
 
         if(!realPwd.equals(result.getPassword()))
-            throw new PasswordNotMatchException("密码错误");
+            throw new PasswordNotMatchException("Password Mismatch");
         result.setSalt(""); // 为了安全和性能考虑，删除盐值
         return result;
     }
@@ -94,12 +94,12 @@ public class IUserInfoServiceImpl implements IUserInfoService {
     public void update(UserInfoEntity user){
         UserInfoEntity result = userInfoMapper.findByUid(user.getUid());
         if (result == null)
-            throw new UidNotFoundException("当前用户对应的UID不存在");
+            throw new UidNotFoundException("UID Not Found");
         if(user.getIsAdmin() == null)
             user.setIsAdmin(0);
 
         if(user.getId() == null)
-            throw new NullException("用户名不可为空，前端应保证用户名称符合正确的格式");
+            throw new NullException("User Name Shall Not Be Empty");
 
         // 如果选择使用md5加密，则使用result的盐值重新加密
         if(useMD5)
@@ -108,7 +108,7 @@ public class IUserInfoServiceImpl implements IUserInfoService {
         if( !result.getId().equals(user.getId())){
             UserInfoEntity temp = userInfoMapper.findById(user.getId());
             if(temp != null)
-                throw new IdDuplicationException("该用户名已被占用，请尝试其他的名称");
+                throw new IdDuplicationException("This ID has been taken, please try another one");
         }
 
         // 如果修改了手机号，则检查手机号是否被占用
@@ -116,13 +116,13 @@ public class IUserInfoServiceImpl implements IUserInfoService {
             if(!result.getPhone().equals(user.getPhone())){
                 UserInfoEntity temp = userInfoMapper.findByPhone(user.getPhone());
                 if(temp != null)
-                    throw new PhoneDuplicationException("该手机号已经绑定到其他账号上了");
+                    throw new PhoneDuplicationException("This phone number has been bound to another account");
             }
         }
 
         Integer rows = userInfoMapper.updateByUid(user);
         if(rows != 1)
-            throw new UpdateException("注册时产生了未知异常");
+            throw new UpdateException("Unknown error during registration");
     }
 
     @Override

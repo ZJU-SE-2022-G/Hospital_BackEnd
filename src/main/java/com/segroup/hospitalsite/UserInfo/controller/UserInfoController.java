@@ -24,7 +24,7 @@ public class UserInfoController extends UserInfoBaseController {
     public String register(UserInfoEntity userInfoEntity){
         System.out.println("[Controller Output]" + userInfoEntity);
         iUserInfoService.register(userInfoEntity);
-        JsonResult<Void> result = new JsonResult<>(SUCCESS, "注册成功");
+        JsonResult<Void> result = new JsonResult<>(SUCCESS, "Register Success");
 
         String json = result.returnJson();
         System.out.println("[Controller Output]" + json);
@@ -46,7 +46,7 @@ public class UserInfoController extends UserInfoBaseController {
 //        jsonObject.put("name",getNameFromSession(session));
 //        jsonObject.put("phone",getPhoneFromSession(session));
 //        jsonObject.put("isAdmin",getIsAdminFromSession(session));
-        JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS,"返回信息");
+        JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS,"Return Message");
 //        System.out.println("[Controller Output]" + jsonObject);
 //        String temp = jsonObject.toString();
         result.setData(userInfoEntity);
@@ -58,7 +58,7 @@ public class UserInfoController extends UserInfoBaseController {
     @RequestMapping("/login")
     public String login(String id, String password, HttpSession session){
         UserInfoEntity userInfoEntity = iUserInfoService.login(id, password);
-        JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS, "登录成功");
+        JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS, "Login Success");
 
         // 设置session
         session.setAttribute("uid", userInfoEntity.getUid());
@@ -82,7 +82,7 @@ public class UserInfoController extends UserInfoBaseController {
     @RequestMapping("/loginByPhone")
     public String loginByPhone(String phone, String password, HttpSession session){
         UserInfoEntity userInfoEntity = iUserInfoService.loginByPhone(phone, password);
-        JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS, "登录成功");
+        JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS, "Login Success");
 
         // 设置session
         session.setAttribute("uid", userInfoEntity.getUid());
@@ -111,7 +111,7 @@ public class UserInfoController extends UserInfoBaseController {
     public String update(UserInfoEntity userInfoEntity){
         System.out.println("[Controller Output]" + userInfoEntity);
         iUserInfoService.update(userInfoEntity);
-        JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS, "更新成功");
+        JsonResult<UserInfoEntity> result = new JsonResult<UserInfoEntity>(SUCCESS, "Update Success");
 
         result.setData(userInfoEntity);
         String json = result.returnJson();
@@ -123,7 +123,7 @@ public class UserInfoController extends UserInfoBaseController {
     public String getAll(HttpSession session){
         System.out.println(getIsAdminFromSession(session));
         List<Map<Integer, String>> info = iUserInfoService.findAll();
-        JsonResult<String> result = new JsonResult<String>(SUCCESS, "更新成功");
+        JsonResult<String> result = new JsonResult<String>(SUCCESS, "Return All Users");
         result.setData(info.toString());
         String json = result.returnJson();
         System.out.println("[Controller Output]" + json);
