@@ -34,11 +34,15 @@ public class ProblemFeedback implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+    private String title;
+
     private String problemType;
 
     private String problem;
 
     private Integer askerId;
+
+    private Integer isAnswered;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Timestamp askTime;

@@ -40,10 +40,13 @@ public class GuideController {
 
     @ApiOperation(value = "page", notes = "可以指定参数的API")
     @GetMapping("/page")
-    public JsonResultUtil<Page<Guide>> getPageGuide(Integer p, Integer pageSize){
+    public JsonResultUtil<Page<Guide>> getPageGuide(Integer p, Integer pageSize, String query){
         Page<Guide> page = new Page<>(p,pageSize);
         QueryWrapper<Guide> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("update_time");
+        if(query!=null){
+            wrapper.nested(i -> i.like("title",query).or().like("content",query));
+        }
         guideService.page(page,wrapper);
         return new JsonResultUtil<Page<Guide>>(SUCCESS,page);
     }
