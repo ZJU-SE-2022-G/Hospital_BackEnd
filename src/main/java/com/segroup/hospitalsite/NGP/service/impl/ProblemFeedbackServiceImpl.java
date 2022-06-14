@@ -1,7 +1,7 @@
 package com.segroup.hospitalsite.NGP.service.impl;
 
 import com.segroup.hospitalsite.NGP.entity.ProblemFeedback;
-import com.segroup.hospitalsite.NGP.mapper.ProblemFeedbackMapper;
+import com.segroup.hospitalsite.mapper.ProblemFeedbackMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.segroup.hospitalsite.NGP.service.IProblemFeedbackService;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.segroup.hospitalsite.NGP.service.impl;
 
 import com.segroup.hospitalsite.NGP.entity.Guide;
-import com.segroup.hospitalsite.NGP.mapper.GuideMapper;
+import com.segroup.hospitalsite.mapper.GuideMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.segroup.hospitalsite.NGP.service.IGuideService;
 import org.springframework.stereotype.Service;
