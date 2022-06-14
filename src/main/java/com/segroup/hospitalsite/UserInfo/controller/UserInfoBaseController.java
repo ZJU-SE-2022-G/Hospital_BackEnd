@@ -81,7 +81,7 @@ public class UserInfoBaseController {
      */
     protected final Integer getUidFromSession(HttpSession session){
         if(session.getAttribute("uid")==null)
-            throw new UidNotFoundException("Session当中没有找到UID！");
+            throw new UidNotFoundException("No UID found in session");
         else
             return Integer.valueOf(session.getAttribute("uid").toString());
     }
@@ -93,7 +93,7 @@ public class UserInfoBaseController {
      */
     protected final String getUidStringFromSession(HttpSession session){
         if(session.getAttribute("uid")==null)
-            throw new UidNotFoundException("Session当中没有找到UID！");
+            throw new UidNotFoundException("No UID found in session");
         else
             return session.getAttribute("uid").toString();
     }
