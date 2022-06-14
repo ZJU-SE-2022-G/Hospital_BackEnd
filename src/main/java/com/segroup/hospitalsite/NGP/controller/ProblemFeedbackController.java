@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * <p>
@@ -31,6 +32,10 @@ public class ProblemFeedbackController {
 
     @Autowired
     private HttpServletRequest request;
+    public static final int SUCCESS = 200;
+    public static final int PROBLEM_NULL_ERROR = 4000;
+    public static final int FEEDBACK_NULL_ERROR = 4001;
+    public static final int ANSWER_NULL_ERROR = 4002;
 
     @ApiOperation(value = "page", notes = "可以指定参数的API")
     @PostMapping("/page")
@@ -38,48 +43,50 @@ public class ProblemFeedbackController {
         Page<ProblemFeedback> page = new Page<>(p,pageSize);
         QueryWrapper<ProblemFeedback> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("update_time");
-        problemFeedbackService.page(page);
-        return new JsonResultUtil<Page<ProblemFeedback>>(200,page);
+        problemFeedbackService.page(page,wrapper);
+        return new JsonResultUtil<Page<ProblemFeedback>>(SUCCESS,page);
     }
 
     @ApiOperation(value = "getById", notes = "可以指定参数的API")
     @GetMapping("/getById")
     public JsonResultUtil<ProblemFeedback> getProblemById(Long id){
-        return new JsonResultUtil<>(200,problemFeedbackService.getById(id));
+        return new JsonResultUtil<>(SUCCESS,problemFeedbackService.getById(id));
     }
 
-    @ApiOperation(value = "create2", notes = "可以指定参数的API")
-    @PostMapping("/create2")
-    public  JsonResultUtil<ProblemFeedback> createProblem(String problem, String problemType){
+    @ApiOperation(value = "create", notes = "可以指定参数的API")
+    @PostMapping("/create")
+    public  JsonResultUtil<ProblemFeedback> createProblem(@RequestBody Map<String, String> rqBody) {
         Integer askerId = (Integer) request.getSession().getAttribute("uid");
+        String problem = rqBody.get("problem");
+        if(problem==null){
+            return new JsonResultUtil<ProblemFeedback>(PROBLEM_NULL_ERROR, "必须输入问题");
+        }
+        String problemType = rqBody.get("problemType");
         ProblemFeedback p = new ProblemFeedback();
         p.setProblem(problem);
         p.setProblemType(problemType);
         p.setAskerId(askerId);
         problemFeedbackService.save(p);
-        return new JsonResultUtil<>(200,p);
-    }
-
-    @ApiOperation(value = "create1", notes = "可以指定参数的API")
-    @PostMapping("/create1")
-    public JsonResultUtil<ProblemFeedback> createProblem(String problem){
-        Integer askerId = (Integer) request.getSession().getAttribute("uid");
-        ProblemFeedback p = new ProblemFeedback();
-        p.setProblem(problem);
-        p.setAskerId(askerId);
-        problemFeedbackService.save(p);
-        return new JsonResultUtil<>(200,p);
+        return new JsonResultUtil<ProblemFeedback>(SUCCESS, p);
     }
 
     @ApiOperation(value = "answer", notes = "可以指定参数的API")
     @PostMapping("/answer")
-    public JsonResultUtil<ProblemFeedback> answerProblem(Long id, String answer){
+    public JsonResultUtil<ProblemFeedback> answerProblem(@RequestBody Map<String, String> rqBody){
         Integer respondentID = (Integer) request.getSession().getAttribute("uid");
+        Long id = Long.parseLong(rqBody.get("id"));
+        String answer = rqBody.get("answer");
+        if(answer==null){
+            return new JsonResultUtil<ProblemFeedback>(ANSWER_NULL_ERROR, "必须输入回答的答案");
+        }
         ProblemFeedback p = problemFeedbackService.getById(id);
         p.setAnswer(answer);
         p.setRespondentId(respondentID);
-        problemFeedbackService.updateById(p);
-        return new JsonResultUtil<>(200,p);
+        boolean b = problemFeedbackService.updateById(p);
+        if(!b){
+            return new JsonResultUtil<ProblemFeedback>(FEEDBACK_NULL_ERROR,"该问题以及不存在等原因导致回答失败");
+        }
+        return new JsonResultUtil<ProblemFeedback>(SUCCESS,p);
     }
 
     @ApiOperation(value = "deleteById", notes = "可以指定参数的API")
@@ -87,6 +94,6 @@ public class ProblemFeedbackController {
     public JsonResultUtil<ProblemFeedback> deleteProblemById(Long id){
         ProblemFeedback p = problemFeedbackService.getById(id);
         Assert.isTrue(problemFeedbackService.removeById(p),"删除失败");
-        return new JsonResultUtil<>(200,p);
+        return new JsonResultUtil<>(SUCCESS,p);
     }
 }
