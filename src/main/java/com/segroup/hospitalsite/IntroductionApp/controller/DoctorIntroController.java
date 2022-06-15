@@ -43,6 +43,7 @@ public class DoctorIntroController {
         return CommonResult.success(queryList);
     }
 
+
     @ApiOperation("获取所有名医介绍")
     @RequestMapping(value = "/fetch-all", method = RequestMethod.GET)
     @ResponseBody
