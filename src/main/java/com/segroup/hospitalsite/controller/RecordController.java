@@ -46,7 +46,7 @@ public class RecordController {
     @ApiOperation("获取所有预约信息")
     @RequestMapping(value = "/fetch-all", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<Record>> getAllPatientInfo()
+    public CommonResult<List<Record>> getAllRecords()
     {
         QueryWrapper<Record> wrapper = new QueryWrapper<>();
         List<Record> queryList = iRecordService.list(wrapper);
@@ -237,7 +237,7 @@ public class RecordController {
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
     @ApiImplicitParam(paramType = "query", dataType = "int", name = "rid", value = "工作编号", required = true)
-    public CommonResult<String> deletePatientInfoById(@RequestParam Integer rid) {
+    public CommonResult<String> deleteRecordInfoById(@RequestParam Integer rid) {
         QueryWrapper<Record> wrapper = new QueryWrapper<>();
         wrapper.eq("rid", rid);
         if (iRecordService.remove(wrapper)) {
@@ -251,7 +251,7 @@ public class RecordController {
     @ApiOperation("删除所有预约信息")
     @RequestMapping(value = "/delete-all", method = RequestMethod.DELETE)
     @ResponseBody
-    public CommonResult<String> deleteAllPatients()
+    public CommonResult<String> deleteAllRecords()
     {
         QueryWrapper<Record> wrapper = new QueryWrapper<>();
         wrapper.ne("rid", "");
