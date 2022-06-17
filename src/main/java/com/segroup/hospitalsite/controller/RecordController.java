@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -69,11 +70,11 @@ public class RecordController {
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "uid", value = "用户id", required = true),
             @ApiImplicitParam(paramType = "query", name = "name", value = "病人姓名", required = true),
             @ApiImplicitParam(paramType = "query", name = "sex", value = "病人性别", required = false, defaultValue = "null"),
-            @ApiImplicitParam(paramType = "query", dataType = "int", name = "age", value = "病人年龄", required = false, defaultValue = "null"),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "age", value = "病人年龄", required = false, defaultValue = "18"),
             @ApiImplicitParam(paramType = "query", name = "pwd", value = "病人身份证", required = false, defaultValue = "-1"),
             @ApiImplicitParam(paramType = "query", name = "departmentName", value = "就诊科室名", required = true, defaultValue = "null"),
             @ApiImplicitParam(paramType = "query", name = "docName", value = "医生姓名", required = true, defaultValue = "null"),
-            @ApiImplicitParam(paramType = "query", name = "orderedTime", value = "就诊日期", required = true, defaultValue = "null")
+            @ApiImplicitParam(paramType = "query", name = "orderedTime", value = "就诊日期", required = true, defaultValue = "2022-06-18")
     })
     public CommonResult<String> insertRecord(
             @RequestParam Integer uid,
@@ -90,7 +91,7 @@ public class RecordController {
         docWrapper.eq("doc_name", docName);
 
         List<DoctorIntro> doctorIntroList = iDoctorIntroService.list(docWrapper);
-        if(doctorIntroList == null)
+        if(doctorIntroList.isEmpty())
         {
             return CommonResult.failed("不存在该医生");
         }
@@ -127,7 +128,12 @@ public class RecordController {
             record.setState("失败");
         }
         if(iRecordService.saveOrUpdate(record)) {
-            return CommonResult.success("");
+            if(iWorkdayService.saveOrUpdate(workday)) {
+                return CommonResult.success("");
+            }
+            else {
+                return CommonResult.failed();
+            }
         }
         else
         {
@@ -144,7 +150,7 @@ public class RecordController {
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "rid", value = "预定号", required = true),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "uid", value = "用户id", required = true),
             @ApiImplicitParam(paramType = "query", name = "name", value = "病人姓名", required = false, defaultValue = "null"),
-            @ApiImplicitParam(paramType = "query", name = "sex", value = "病人性别", required = false, defaultValue = "男"),
+            @ApiImplicitParam(paramType = "query", name = "sex", value = "病人性别", required = true, defaultValue = "男"),
             @ApiImplicitParam(paramType = "query", dataType = "int",name = "age", value = "病人年龄", required = false, defaultValue = "null"),
             @ApiImplicitParam(paramType = "query", name = "pwd", value = "病人身份证", required = false, defaultValue = "-1"),
             @ApiImplicitParam(paramType = "query", name = "departmentName", value = "就诊科室名", required = true, defaultValue = "null"),
@@ -188,7 +194,15 @@ public class RecordController {
         // 新预约预订, 获得号源
         int serialNum = newWork.increment();
 
-        record.setName(name);
+        if(!Objects.equals(name, "null")) {
+            record.setName(name);
+        }
+        if(!Objects.equals(age, "-1")) {
+            record.setAge(age);
+        }
+        if(!Objects.equals(pwd, "null")) {
+            record.setPwd(pwd);
+        }
         record.setSex(sex);
         record.setUid(uid);
         record.setWid(newWork.getWid());
@@ -205,7 +219,13 @@ public class RecordController {
             record.setState("失败");
         }
         if(iRecordService.saveOrUpdate(record)) {
-            return CommonResult.success("");
+            if(iWorkdayService.saveOrUpdate(newWork) && iWorkdayService.saveOrUpdate(iniWork)) {
+                return CommonResult.success("");
+            }
+            else
+            {
+                return CommonResult.failed();
+            }
         }
         else
         {
