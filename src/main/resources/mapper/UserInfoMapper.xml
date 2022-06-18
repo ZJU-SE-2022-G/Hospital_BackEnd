@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.segroup.hospitalsite.mapper.UserInfoMapper">
+    <insert id="insertNew">
+        INSERT INTO account (id, password, name, phone, isAdmin, salt)
+        VALUES (#{id}, #{password}, #{name}, #{phone}, #{isAdmin}, #{salt})
+    </insert>
+
+    <select id="findByUid" resultType="com.segroup.hospitalsite.UserInfo.entity.UserInfoEntity">
+        SELECT * from account WHERE uid = #{uid}
+    </select>
+
+    <select id="findById" resultType="com.segroup.hospitalsite.UserInfo.entity.UserInfoEntity">
+        select * from account WHERE id = #{id}
+    </select>
+
+    <select id="findByPhone" resultType="com.segroup.hospitalsite.UserInfo.entity.UserInfoEntity">
+        select * from account WHERE phone = #{phone}
+    </select>
+
+    <update id="updateByUid">
+        UPDATE account SET
+            id = #{id},
+            password = #{password},
+            phone = #{phone},
+            name = #{name},
+            isAdmin = #{isAdmin}
+        WHERE
+            uid = #{uid}
+    </update>
+
+    <select id="findAll" resultType="java.util.HashMap">
+        SELECT * from account;
+    </select>
+</mapper>
